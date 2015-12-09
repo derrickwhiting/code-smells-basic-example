@@ -31,32 +31,28 @@ class OwnersController < ApplicationController
       redirect_to owners_path, success: "Owner with name #{params[:owner][:first_neme]} #{params[:owner][:last_name]} was not created successfully"
     end
   end
-  
+
   def edit
     @owner = Owner.find_by(name: params[:name])
   end
 
   def destroy
-    p = params[:id]
-    message = nil
-    success_message = ""
-    error_message = ''
-    @onr = Owner.find(r)
-    if @onr && @onr.persisted? && p
+    @owner = Owner.find(params[:id])
+    #if @owner.persisted?
       #destroy all my cats
-      @onr.cats.each do |cat|
-        cat.destroy
-      end
-      if @onr.destroy
-        success_message = "owner destroyed" 
-        flash[:success] = success_message
-        redirect_to owners_path
-      end
+     #  @onr.cats.each do |cat|
+     #    cat.destroy
+     #  end
+    if @owner.destroy
+      success_message = "owner destroyed"
+      flash[success_message]
+      redirect_to owners_path
     else
-      error_message = "owner not destroyed because something happened with #{params[:id]}"
-      flash[:error] = error_message
+      error_message = "owner not destroyed because something happened with owner."
+      flash[error_message]
       # redirect_to owners_path
-    end 
+      render :show
+    end
   end
 
   # this method takes in an owner and sets its first cats age to 23
