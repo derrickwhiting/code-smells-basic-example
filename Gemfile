@@ -39,7 +39,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'better_errors'
   gem 'bullet'
-  gem 'rack-mini-profiler'
   gem 'awesome_print'
   gem 'byebug'
 
